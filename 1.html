@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="format-detection" content="telephone=yes"/>
+		<title></title>
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			a{
+				color: #000000;
+				text-decoration: none;
+			}
+			.content{
+				height: 100vh;
+				/* border: 2px solid #000; */
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				/* justify-content: center; */
+			}
+			.wrap{
+				margin-top: 10px;
+				width: 100%;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+			}
+			.item{
+				display: flex;
+				width: 96%;
+				align-items: center;
+				border-bottom: 1px solid #eeeeee;
+				padding: 10px;
+			}
+			.item aside{
+				margin-left: 20px;
+			}
+			.item img{
+				width:80px;
+				height:80px;
+			}
+			
+			/*.telimg{*/
+			/*    height:10px;*/
+			/*}*/
+		</style>
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+	</head>
+	<body>
+		<div class="content">
+			<!--<h1>xxx工作人员介绍</h1>-->
+			<div class="wrap">
+			    {if empty($list)}
+			    	<div class='fui-content-inner'>
+                	    <div class='content-empty' >
+                		<i class='icon icon-searchlist'></i><br/>暂时没有任何电话
+                	    </div>
+                	    <div class="fui-goods-group container block" id="goods-list-container"></div>
+                	    <!--<div class='infinite-loading'><span class='fui-preloader'></span><span class='text'> 正在加载...</span></div>-->
+                	</div>
+			    {/if}
+			    
+			    {loop $list $litem}
+				<div class="item">
+					<img src="{php echo tomedia($litem['img'])}" alt="">
+					<aside>
+					    <h4>{$litem['name']}</h4>
+					    <p>电话： <a href="tel:{$litem['tel']}">
+						{$litem['tel']} <img style="height:20px;width:auto" class="telimg" src="{php echo '../addons/ewei_shopv2/static/images/tel.png'}" alt="" />
+						</a> 
+					    </p> 
+					    <p>地址：{$litem['address']}</p>  
+					</aside>
+				</div>
+				{/loop}
+			
+			</div>
+		</div>
+	</body>
+</html>
